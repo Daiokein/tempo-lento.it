@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Tempo Lento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            font-family: 'Georgia', serif;
+            color: white;
+            background: url('tomasz-filipek-4P9I2myRzyM.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        p {
+            font-size: 1.3em;
+            font-style: italic;
+            margin: 0.5em 0;
+        }
+        .countdown {
+            font-size: 1.2em;
+            margin-top: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1>Tempo Lento</h1>
+        <p>Senza fretta, per scelta</p>
+        <p>Primavera 2026</p>
+        <div class="countdown" id="countdown"></div>
+    </div>
+    <script>
+        const countdown = document.getElementById('countdown');
+        const targetDate = new Date('2026-04-07T00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                countdown.innerHTML = "È arrivato il momento.";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdown.innerHTML = "Mancano " + days + " giorni, " + hours + " ore, " + minutes + " minuti e " + seconds + " secondi";
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
